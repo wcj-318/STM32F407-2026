@@ -70,6 +70,28 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(LED_BLUE_GPIO_Port, &GPIO_InitStruct);
 
+  /* The on-board KEY1 already has hardware debounce and drives PA0 high. */
+  GPIO_InitStruct.Pin = START_KEY_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  HAL_GPIO_Init(START_KEY_GPIO_Port, &GPIO_InitStruct);
+
+  HAL_NVIC_SetPriority(EXTI0_IRQn, 3, 0);
+  HAL_NVIC_EnableIRQ(EXTI0_IRQn);
+
+  /* Keep the motor driver disabled while GPIO and PWM are initialized. */
+  HAL_GPIO_WritePin(GPIOC, HLINE_MOTOR_LEFT_IN1_Pin | HLINE_MOTOR_LEFT_IN2_Pin
+                           | HLINE_MOTOR_RIGHT_IN1_Pin | HLINE_MOTOR_RIGHT_IN2_Pin
+                           | HLINE_MOTOR_STBY_Pin, GPIO_PIN_RESET);
+
+  GPIO_InitStruct.Pin = HLINE_MOTOR_LEFT_IN1_Pin | HLINE_MOTOR_LEFT_IN2_Pin
+                        | HLINE_MOTOR_RIGHT_IN1_Pin | HLINE_MOTOR_RIGHT_IN2_Pin
+                        | HLINE_MOTOR_STBY_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
 }
 
 /* USER CODE BEGIN 2 */

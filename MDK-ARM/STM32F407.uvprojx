@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F407xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../Bsp/CAN;../Bsp/UART;../Bsp/ESP8266;../Bsp/NRF24L01</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../Bsp/CAN;../Bsp/UART;../Bsp/ESP8266;../Bsp/NRF24L01;../Bsp/Gray;../Bsp/OLED;../Bsp/Motor;../Bsp/LineFollow;../Bsp/Encoder;../Bsp/Servo</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -568,6 +568,36 @@
               <FileName>bsp_UART.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Bsp\UART\bsp_UART.c</FilePath>
+            </File>
+            <File>
+              <FileName>gray.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Bsp\Gray\gray.c</FilePath>
+            </File>
+            <File>
+              <FileName>oled.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Bsp\OLED\oled.c</FilePath>
+            </File>
+            <File>
+              <FileName>motor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Bsp\Motor\motor.c</FilePath>
+            </File>
+            <File>
+              <FileName>line_follow.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Bsp\LineFollow\line_follow.c</FilePath>
+            </File>
+            <File>
+              <FileName>encoder.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Bsp\Encoder\encoder.c</FilePath>
+            </File>
+            <File>
+              <FileName>servo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Bsp\Servo\servo.c</FilePath>
             </File>
           </Files>
         </Group>

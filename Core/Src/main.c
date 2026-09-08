@@ -1,45 +1,45 @@
 /* USER CODE BEGIN Header */
 /**==================================================================================================================
- ** ¡¾´úÂë±àĞ´¡¿  Ä§Å®¿ª·¢°åÍÅ¶Ó
- ** ¡¾ÌÔ    ±¦¡¿  Ä§Å®¿ª·¢°å       https://demoboard.taobao.com
+ ** ã€ä»£ç ç¼–å†™ã€‘  é­”å¥³å¼€å‘æ¿å›¢é˜Ÿ
+ ** ã€æ·˜    å®ã€‘  é­”å¥³å¼€å‘æ¿       https://demoboard.taobao.com
  **==================================================================================================================
- ** ¡¾ÊµÑéÃû³Æ¡¿  ¸ß¼¶¶¨Ê±Æ÷ TIM1 ¶¨Ê±²âÊÔ
+ ** ã€å®éªŒåç§°ã€‘  é«˜çº§å®šæ—¶å™¨ TIM1 å®šæ—¶æµ‹è¯•
  **
- ** ¡¾ÊÊÓÃÆ½Ì¨¡¿  STM32F407 + keil5 + HAL¿â
+ ** ã€é€‚ç”¨å¹³å°ã€‘  STM32F407 + keil5 + HALåº“
  **
- ** ¡¾ÊµÑéÄ¿±ê¡¿  Í¨¹ıTIM1ÅäÖÃ¶¨Ê±£¬Ã¿¸ô1Ãë·´×ªLED;
+ ** ã€å®éªŒç›®æ ‡ã€‘  é€šè¿‡TIM1é…ç½®å®šæ—¶ï¼Œæ¯éš”1ç§’åè½¬LED;
  **
- ** ¡¾Òı½Å½ÓÏß¡¿  ÎªÁË·½±ã¹Û²ìÊµÑéĞ§¹û£¬¿ÉÒÔÊ¹ÓÃÒÔÏÂÁ½ÖÖ·½·¨;
- **               1-Ê¹ÓÃ°åÉÏµÄLED_BLUE(PB2) ÅäºÏ²âÊÔ¡£
- **               2_Èç¹ûÓĞÊ¾²¨Æ÷£¬Ê¾²¨Æ÷Í¨µÀ½ÓÉÏPB2,  ¹²µØ¡£
+ ** ã€å¼•è„šæ¥çº¿ã€‘  ä¸ºäº†æ–¹ä¾¿è§‚å¯Ÿå®éªŒæ•ˆæœï¼Œå¯ä»¥ä½¿ç”¨ä»¥ä¸‹ä¸¤ç§æ–¹æ³•;
+ **               1-ä½¿ç”¨æ¿ä¸Šçš„LED_BLUE(PB2) é…åˆæµ‹è¯•ã€‚
+ **               2_å¦‚æœæœ‰ç¤ºæ³¢å™¨ï¼Œç¤ºæ³¢å™¨é€šé“æ¥ä¸ŠPB2,  å…±åœ°ã€‚
  **
- ** ¡¾ CubeMX ¡¿  ´ò¿ªTimers£¬Ñ¡ÔñTIM1;
- **               Clock Source(Ê±ÖÓÔ´): Internal Clock    ÄÚ²¿Ê±ÖÓ
- **               Prescaler(PSC)      £º168-1             ·ÖÆµÖµ      »ù±¾¶¨Ê±Æ÷µÄÊ±ÖÓÔ´ÊÇ84MHz, 84·ÖÆµºóÂö³åÆµÂÊÎª1MHz, ¼´Ã¿1us²úÉúÒ»¸ö¼ÆÊıĞÅºÅ¡£
- **               Counter Period(ARR) : 1000-1            ÖÜÆÚÖµ      ¶àÉÙ¸ö¼ÆÊıĞÅºÅ×é³ÉÒ»¸öÖÜÆÚ
- **               auto-reload preload : Enable            Ô¤×°ÔØ      Ê¹ÄÜºó£¬¸ü¸ÄARRÖµ²»»á´ò¶Ïµ±Ç°²¨ĞÎ
- **               NVIC Settings(ÖĞ¶Ï) : update interrupt  ´ò¹´        ÖÜÆÚ¸üĞÂÖĞ¶Ï
+ ** ã€ CubeMX ã€‘  æ‰“å¼€Timersï¼Œé€‰æ‹©TIM1;
+ **               Clock Source(æ—¶é’Ÿæº): Internal Clock    å†…éƒ¨æ—¶é’Ÿ
+ **               Prescaler(PSC)      ï¼š168-1             åˆ†é¢‘å€¼      åŸºæœ¬å®šæ—¶å™¨çš„æ—¶é’Ÿæºæ˜¯84MHz, 84åˆ†é¢‘åè„‰å†²é¢‘ç‡ä¸º1MHz, å³æ¯1usäº§ç”Ÿä¸€ä¸ªè®¡æ•°ä¿¡å·ã€‚
+ **               Counter Period(ARR) : 1000-1            å‘¨æœŸå€¼      å¤šå°‘ä¸ªè®¡æ•°ä¿¡å·ç»„æˆä¸€ä¸ªå‘¨æœŸ
+ **               auto-reload preload : Enable            é¢„è£…è½½      ä½¿èƒ½åï¼Œæ›´æ”¹ARRå€¼ä¸ä¼šæ‰“æ–­å½“å‰æ³¢å½¢
+ **               NVIC Settings(ä¸­æ–­) : update interrupt  æ‰“å‹¾        å‘¨æœŸæ›´æ–°ä¸­æ–­
  **
- ** ¡¾³õ Ê¼ »¯¡¿  1-TIM1µÄ³õÊ¼»¯´úÂë£¬CubeMX»á¸ù¾İÅäÖÃ×Ô¶¯Éú³É¡£
- **               2-Ö»ĞèÔÚmainº¯ÊıÖĞ£¬µ÷ÓÃº¯Êı¿ªÆôTIM1¡¢´ò¿ªÖĞ¶Ï.
+ ** ã€åˆ å§‹ åŒ–ã€‘  1-TIM1çš„åˆå§‹åŒ–ä»£ç ï¼ŒCubeMXä¼šæ ¹æ®é…ç½®è‡ªåŠ¨ç”Ÿæˆã€‚
+ **               2-åªéœ€åœ¨mainå‡½æ•°ä¸­ï¼Œè°ƒç”¨å‡½æ•°å¼€å¯TIM1ã€æ‰“å¼€ä¸­æ–­.
  **
- ** ¡¾»Øµ÷º¯Êı¡¿  1-Ê¹ÓÃCubeMXÉú³É¹¤³Ì£¬ÆäÉú³ÉµÄ´úÂë»á±àĞ´ºÃÖĞ¶Ï·şÎñº¯Êı¡¢ÇåÀíÖĞ¶Ï±êÖ¾¡¢µ÷ÓÃÖĞ¶Ï»Øµ÷º¯Êı¡£ÎÒÃÇÖ»ĞèÖØĞ´»Øµ÷º¯Êı£¬²¢ÔÚÆäÖĞÖ´ĞĞ×Ô¶¨Òå²Ù×÷¡£
- **               2-¸ß¼¶¶¨Ê±Æ÷£¬ÓĞ¶à¸öÖĞ¶Ï£¬ÎÒÃÇÔÚCubeMXÖĞÊ¹ÓÃµÄÊÇupdate interrupt(ÖÜÆÚ¸üĞÂÖĞ¶Ï), µ±CNT¼ÆÊı´ïµ½1ÖÜÆÚÖµÊ±´¥·¢£¬Ó²¼ş×Ô¶¯µ÷ÓÃÖĞ¶Ï·şÎñº¯Êı£¬¼Ì¶øµ÷ÓÃÆäÖĞ¶Ï»Øµ÷º¯Êı£ºHAL_TIM_PeriodElapsedCallback();
- **               3-ÖĞ¶Ï»Øµ÷º¯Êı£¬±¾Ê¾ÀıĞ´ÔÚÁËmain.cµÄµ×²¿¡£Äã¿ÉÒÔĞ´ÔÚ¹¤³ÌµÄÈÎÒâÒ»¸öcÎÄ¼şÖĞ¡£
+ ** ã€å›è°ƒå‡½æ•°ã€‘  1-ä½¿ç”¨CubeMXç”Ÿæˆå·¥ç¨‹ï¼Œå…¶ç”Ÿæˆçš„ä»£ç ä¼šç¼–å†™å¥½ä¸­æ–­æœåŠ¡å‡½æ•°ã€æ¸…ç†ä¸­æ–­æ ‡å¿—ã€è°ƒç”¨ä¸­æ–­å›è°ƒå‡½æ•°ã€‚æˆ‘ä»¬åªéœ€é‡å†™å›è°ƒå‡½æ•°ï¼Œå¹¶åœ¨å…¶ä¸­æ‰§è¡Œè‡ªå®šä¹‰æ“ä½œã€‚
+ **               2-é«˜çº§å®šæ—¶å™¨ï¼Œæœ‰å¤šä¸ªä¸­æ–­ï¼Œæˆ‘ä»¬åœ¨CubeMXä¸­ä½¿ç”¨çš„æ˜¯update interrupt(å‘¨æœŸæ›´æ–°ä¸­æ–­), å½“CNTè®¡æ•°è¾¾åˆ°1å‘¨æœŸå€¼æ—¶è§¦å‘ï¼Œç¡¬ä»¶è‡ªåŠ¨è°ƒç”¨ä¸­æ–­æœåŠ¡å‡½æ•°ï¼Œç»§è€Œè°ƒç”¨å…¶ä¸­æ–­å›è°ƒå‡½æ•°ï¼šHAL_TIM_PeriodElapsedCallback();
+ **               3-ä¸­æ–­å›è°ƒå‡½æ•°ï¼Œæœ¬ç¤ºä¾‹å†™åœ¨äº†main.cçš„åº•éƒ¨ã€‚ä½ å¯ä»¥å†™åœ¨å·¥ç¨‹çš„ä»»æ„ä¸€ä¸ªcæ–‡ä»¶ä¸­ã€‚
  **
- ** ¡¾TIM ÖØµã¡¿  1_Ê±ÖÓÆµÂÊ£ºSTM32F407Ä¬ÈÏÏµÍ³ÆµÂÊ168MHz; TIM1¡¢8¡¢9¡¢10¡¢11µÄÊ±ÖÓÆµÂÊÊÇAPB2*2=84MHz*2=168MHz, ¶øTIM1¡¢3¡¢4¡¢5¡¢6¡¢7¡¢12¡¢13¡¢14µÄÊ±ÖÓÆµÂÊÊÇAPB1*2=42MHz*2=84MHz;
- **               2_»ù±¾¶¨Ê±Æ÷¡¢Í¨ÓÃ¶¨Ê±Æ÷¡¢¸ß¼¶¶¨Ê±Æ÷×ÊÔ´ÊÇÓĞÃ÷ÏÔÇø±ğµÄ£¬ÒÑÕûÀíÓĞ¡¶TIM×ÊÔ´±í¡·´æ·ÅÔÚÊ¾ÀıÎÄ¼ş¼ĞÖĞ£¬½ö¹©²Î¿¼;
- **               3_PSC£¬Ô¤·ÖÆµÖµ;    ×÷ÓÃ£º¿ØÖÆ¼ÆÊıÆ÷Ã¿Ò»Âö³åµÄÊ±³¤; ½âÊÍ£º°ÑÊ±ÖÓÔ´·ÖÆµºóÌá¹©¸ø¼ÆÊıÆ÷Ê¹ÓÃ£¬¼´¶àÉÙ¸öÊ±ÖÓÔ´Âö³å£¬²Å²úÉúÒ»´Î¼ÆÊıÆ÷Âö³å;
- **               4_ARR£¬×Ô¶¯ÖØÔØÖµ;  ×÷ÓÃ£º¿ØÖÆÖÜÆÚ; ½âÊÍ£º¶àÉÙ¸ö¼ÆÊıÆ÷Âö³å£¬×é³ÉÒ»ÍêÕû²¨ĞÎÖÜÆÚ;
- **               5_CNT£¬¼ÆÊıÆ÷;      ×÷ÓÃ£ºÃ¿Ò»Âö³å£¬Ó²¼ş×Ô¶¯²Ù×÷µİÔö¡¢µİ¼õ;
- **               6_CCR£¬²¶»ñ/±È½ÏÖµ; ×÷ÓÃ£ºÊä³öÄ£Ê½ÓÃÓÚÓëCNTÖµ×÷´óĞ¡±È½Ï¶øÊä³öÓĞĞ§µçÆ½; ÊäÈëÄ£Ê½ÓÃÓÚ¼ÇÂ¼ÉÏÒ»²¶»ñÊ±µÄ¼ÆÊıÆ÷Öµ; ×¢Òâ£¬»ù±¾¶¨Ê±Æ÷TIM6ºÍ7Ã»ÓĞCCR¼Ä´æÆ÷¡£
- **               7_¼Ä´æÆ÷Î»¿í:ËùÓĞTIMµÄPSC¼Ä´æÆ÷£¬¶¼ÊÇ16Î»µÄ£¬È¡Öµ·¶Î§£º1~65535; ×¢Òâ£ºARR¡¢CNT¡¢CCRÈı¸ö¼Ä´æÆ÷£¬³ıÁËTIM1ºÍ5ÊÇ32Î»£¬ÆäËüTIMµÄ¶¼ÊÇ16Î»;
- **               8_Êä³ö¼«ĞÔ£¬Àí½âÎªÓĞĞ§µçÆ½¡£ÔÚTIM_OCPolarityÀïÉèÖÃ£¬¿ÉÒÔÉèÖÃÎª¸ß¡¢µÍµçÆ½; Èç£¬µ±PWM1Ä£Ê½ÏÂ£¬µ±CNT<CCRÊ±Êä³öÓĞĞ§µçÆ½£¬Õâ¸öÓĞĞ§µçÆ½£¬¾ÍÊÇÄãÉèÖÃµÄ¡°Êä³ö¼«ĞÔ¡±; ×¢Òâ£º»ù±¾¶¨Ê±Æ÷TIM6ºÍ7Ã»ÓĞÕâ¸ö¸ÅÄî.
- **               9_ÖĞ¶Ï»Øµ÷º¯Êı£ºÈç¹ûÊ¹ÓÃCubeMXÉú³É¹¤³Ì£¬ÆäÉú³ÉµÄ´úÂë»á±àĞ´ºÃÖĞ¶Ï·şÎñº¯Êı¡¢ÇåÀíÖĞ¶Ï±êÖ¾¡¢µ÷ÓÃÖĞ¶Ï»Øµ÷º¯Êı¡£ÎÒÃÇÖ»ĞèÖØĞ´»Øµ÷º¯Êı£¬²¢ÔÚÆäÖĞÖ´ĞĞ×Ô¶¨Òå²Ù×÷¡£
+ ** ã€TIM é‡ç‚¹ã€‘  1_æ—¶é’Ÿé¢‘ç‡ï¼šSTM32F407é»˜è®¤ç³»ç»Ÿé¢‘ç‡168MHz; TIM1ã€8ã€9ã€10ã€11çš„æ—¶é’Ÿé¢‘ç‡æ˜¯APB2*2=84MHz*2=168MHz, è€ŒTIM1ã€3ã€4ã€5ã€6ã€7ã€12ã€13ã€14çš„æ—¶é’Ÿé¢‘ç‡æ˜¯APB1*2=42MHz*2=84MHz;
+ **               2_åŸºæœ¬å®šæ—¶å™¨ã€é€šç”¨å®šæ—¶å™¨ã€é«˜çº§å®šæ—¶å™¨èµ„æºæ˜¯æœ‰æ˜æ˜¾åŒºåˆ«çš„ï¼Œå·²æ•´ç†æœ‰ã€ŠTIMèµ„æºè¡¨ã€‹å­˜æ”¾åœ¨ç¤ºä¾‹æ–‡ä»¶å¤¹ä¸­ï¼Œä»…ä¾›å‚è€ƒ;
+ **               3_PSCï¼Œé¢„åˆ†é¢‘å€¼;    ä½œç”¨ï¼šæ§åˆ¶è®¡æ•°å™¨æ¯ä¸€è„‰å†²çš„æ—¶é•¿; è§£é‡Šï¼šæŠŠæ—¶é’Ÿæºåˆ†é¢‘åæä¾›ç»™è®¡æ•°å™¨ä½¿ç”¨ï¼Œå³å¤šå°‘ä¸ªæ—¶é’Ÿæºè„‰å†²ï¼Œæ‰äº§ç”Ÿä¸€æ¬¡è®¡æ•°å™¨è„‰å†²;
+ **               4_ARRï¼Œè‡ªåŠ¨é‡è½½å€¼;  ä½œç”¨ï¼šæ§åˆ¶å‘¨æœŸ; è§£é‡Šï¼šå¤šå°‘ä¸ªè®¡æ•°å™¨è„‰å†²ï¼Œç»„æˆä¸€å®Œæ•´æ³¢å½¢å‘¨æœŸ;
+ **               5_CNTï¼Œè®¡æ•°å™¨;      ä½œç”¨ï¼šæ¯ä¸€è„‰å†²ï¼Œç¡¬ä»¶è‡ªåŠ¨æ“ä½œé€’å¢ã€é€’å‡;
+ **               6_CCRï¼Œæ•è·/æ¯”è¾ƒå€¼; ä½œç”¨ï¼šè¾“å‡ºæ¨¡å¼ç”¨äºä¸CNTå€¼ä½œå¤§å°æ¯”è¾ƒè€Œè¾“å‡ºæœ‰æ•ˆç”µå¹³; è¾“å…¥æ¨¡å¼ç”¨äºè®°å½•ä¸Šä¸€æ•è·æ—¶çš„è®¡æ•°å™¨å€¼; æ³¨æ„ï¼ŒåŸºæœ¬å®šæ—¶å™¨TIM6å’Œ7æ²¡æœ‰CCRå¯„å­˜å™¨ã€‚
+ **               7_å¯„å­˜å™¨ä½å®½:æ‰€æœ‰TIMçš„PSCå¯„å­˜å™¨ï¼Œéƒ½æ˜¯16ä½çš„ï¼Œå–å€¼èŒƒå›´ï¼š1~65535; æ³¨æ„ï¼šARRã€CNTã€CCRä¸‰ä¸ªå¯„å­˜å™¨ï¼Œé™¤äº†TIM1å’Œ5æ˜¯32ä½ï¼Œå…¶å®ƒTIMçš„éƒ½æ˜¯16ä½;
+ **               8_è¾“å‡ºææ€§ï¼Œç†è§£ä¸ºæœ‰æ•ˆç”µå¹³ã€‚åœ¨TIM_OCPolarityé‡Œè®¾ç½®ï¼Œå¯ä»¥è®¾ç½®ä¸ºé«˜ã€ä½ç”µå¹³; å¦‚ï¼Œå½“PWM1æ¨¡å¼ä¸‹ï¼Œå½“CNT<CCRæ—¶è¾“å‡ºæœ‰æ•ˆç”µå¹³ï¼Œè¿™ä¸ªæœ‰æ•ˆç”µå¹³ï¼Œå°±æ˜¯ä½ è®¾ç½®çš„â€œè¾“å‡ºææ€§â€; æ³¨æ„ï¼šåŸºæœ¬å®šæ—¶å™¨TIM6å’Œ7æ²¡æœ‰è¿™ä¸ªæ¦‚å¿µ.
+ **               9_ä¸­æ–­å›è°ƒå‡½æ•°ï¼šå¦‚æœä½¿ç”¨CubeMXç”Ÿæˆå·¥ç¨‹ï¼Œå…¶ç”Ÿæˆçš„ä»£ç ä¼šç¼–å†™å¥½ä¸­æ–­æœåŠ¡å‡½æ•°ã€æ¸…ç†ä¸­æ–­æ ‡å¿—ã€è°ƒç”¨ä¸­æ–­å›è°ƒå‡½æ•°ã€‚æˆ‘ä»¬åªéœ€é‡å†™å›è°ƒå‡½æ•°ï¼Œå¹¶åœ¨å…¶ä¸­æ‰§è¡Œè‡ªå®šä¹‰æ“ä½œã€‚
  **
- ** ¡¾¸üĞÂ¼ÇÂ¼¡¿  2024-03-06  ĞÂ½¨HAL¿â¹¤³Ì
+ ** ã€æ›´æ–°è®°å½•ã€‘  2024-03-06  æ–°å»ºHALåº“å·¥ç¨‹
  **
- ** ¡¾±¸×¢ËµÃ÷¡¿  °æÈ¨¹éÄ§Å®¿Æ¼¼ËùÓĞ£¬ÇëÎğÉÌÓÃ£¬Ğ»Ğ»£¡
+ ** ã€å¤‡æ³¨è¯´æ˜ã€‘  ç‰ˆæƒå½’é­”å¥³ç§‘æŠ€æ‰€æœ‰ï¼Œè¯·å‹¿å•†ç”¨ï¼Œè°¢è°¢ï¼
  **               https://demoboard.taobao.com
  **
 ==================================================================================================================**/
@@ -51,11 +51,15 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-/* ÓÃ»§´úÂë£¬±ØĞëĞ´ÔÚÅä¶ÔµÄBEGINÓëENDÖ®¼ä£¬·ñÔòCubeMXÖØĞÂÉú³Éºó£¬»á±»É¾³ıµô */
+/* ç”¨æˆ·ä»£ç ï¼Œå¿…é¡»å†™åœ¨é…å¯¹çš„BEGINä¸ENDä¹‹é—´ï¼Œå¦åˆ™CubeMXé‡æ–°ç”Ÿæˆåï¼Œä¼šè¢«åˆ é™¤æ‰ */
 
-#include "bsp_UART.h"            // ´®¿ÚÍ¨ĞÅµ×²ãÇı¶¯ÎÄ¼ş; ÒÑÖØĞ´ºÃ³õÊ¼»¯¡¢ÊÕ·¢£¬µ÷ÓÃº¯Êı¼´¿ÉÊ¹ÓÃ´®¿Ú
-
-
+#include "bsp_UART.h"            // ä¸²å£é€šä¿¡åº•å±‚é©±åŠ¨æ–‡ä»¶; å·²é‡å†™å¥½åˆå§‹åŒ–ã€æ”¶å‘ï¼Œè°ƒç”¨å‡½æ•°å³å¯ä½¿ç”¨ä¸²å£
+#include "gray.h"
+#include "line_follow.h"
+#include "motor.h"
+#include "oled.h"
+#include "encoder.h"
+#include "servo.h"
 
 /* USER CODE END Includes */
 
@@ -78,6 +82,30 @@
 
 /* USER CODE BEGIN PV */
 
+typedef enum
+{
+    PHASE4_WAIT = 0,
+    PHASE4_RUN,
+    PHASE4_FINISH,
+    PHASE4_LOST
+} Phase4_State_t;
+
+static Gray_Sample_t gray_sample;
+static LineFollow_Controller_t line_controller;
+static SpeedControl_Controller_t speed_controller;
+static Phase4_State_t phase4_state = PHASE4_WAIT;
+static int16_t phase4_left_request_pwm;
+static int16_t phase4_right_request_pwm;
+static int16_t phase4_left_output_pwm;
+static int16_t phase4_right_output_pwm;
+static int16_t phase4_line_correction;
+static const Encoder_Sample_t *encoder_sample;
+static uint32_t phase4_run_start_ms;
+static uint32_t phase4_elapsed_ms;
+static uint8_t phase4_stop_line_armed;
+static uint8_t phase4_stop_line_clear_frames;
+static uint8_t phase4_stop_line_hit_frames;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -88,6 +116,318 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+#define PHASE4_OLED_PERIOD_MS         500U
+#define PHASE4_OLED_TIME_PERIOD_MS    500U
+#define PHASE4_KEY_GUARD_MS             80U
+#define PHASE4_VOFA_PERIOD_MS          100U
+#define PHASE4_VOFA_BAUDRATE          9600U
+#define PHASE4_VOFA_CHANNEL_COUNT       19U
+#define PHASE4_STOP_GRAY8_CENTER6_MASK    0x7EU
+#define PHASE4_STOP_GRAY8_HIT_MIN            4U
+#define PHASE4_STOP_GRAY5_CENTER3_MASK    0x0EU
+#define PHASE4_STOP_GRAY5_HIT_MIN            1U
+#define PHASE4_STOP_LINE_CLEAR_FRAMES        5U
+#define PHASE4_STOP_LINE_CONFIRM_FRAMES      1U
+#define PHASE4_FINISH_BRAKE_MS             100U
+
+typedef struct
+{
+    float channel[PHASE4_VOFA_CHANNEL_COUNT];
+    uint8_t tail[4];
+} Phase4_VofaFrame_t;
+
+static volatile uint32_t phase4_start_key_irq_count;
+static uint32_t phase4_start_key_handled_count;
+static uint32_t phase4_start_key_last_ms;
+
+static uint8_t Phase4_ReadStartKey(void)
+{
+    return (HAL_GPIO_ReadPin(START_KEY_GPIO_Port, START_KEY_Pin) == GPIO_PIN_SET) ? 1U : 0U;
+}
+
+static void Phase4_StartKeyInit(uint32_t now)
+{
+    phase4_start_key_handled_count = phase4_start_key_irq_count;
+    phase4_start_key_last_ms = now - PHASE4_KEY_GUARD_MS;
+}
+
+static uint8_t Phase4_StartKeyPressed(uint32_t now)
+{
+    uint32_t irq_count = phase4_start_key_irq_count;
+
+    if (irq_count == phase4_start_key_handled_count)
+    {
+        return 0U;
+    }
+
+    phase4_start_key_handled_count = irq_count;
+
+    if ((now - phase4_start_key_last_ms) >= PHASE4_KEY_GUARD_MS)
+    {
+        phase4_start_key_last_ms = now;
+        return 1U;
+    }
+
+    return 0U;
+}
+
+static uint8_t Phase4_CountBits(uint8_t value)
+{
+    uint8_t count = 0U;
+
+    while (value != 0U)
+    {
+        count = (uint8_t)(count + (value & 0x01U));
+        value >>= 1U;
+    }
+
+    return count;
+}
+
+static uint8_t Phase4_StopLineDetected(void)
+{
+    uint8_t gray8_active = (uint8_t)(gray_sample.gray8_mask & PHASE4_STOP_GRAY8_CENTER6_MASK);
+    uint8_t gray5_active = (uint8_t)(gray_sample.gray5_mask & PHASE4_STOP_GRAY5_CENTER3_MASK);
+
+    return ((Phase4_CountBits(gray8_active) >= PHASE4_STOP_GRAY8_HIT_MIN) &&
+            (Phase4_CountBits(gray5_active) >= PHASE4_STOP_GRAY5_HIT_MIN)) ? 1U : 0U;
+}
+
+static void Phase4_StopLineReset(void)
+{
+    phase4_stop_line_armed = 0U;
+    phase4_stop_line_clear_frames = 0U;
+    phase4_stop_line_hit_frames = 0U;
+}
+
+static uint8_t Phase4_StopLineStep(void)
+{
+    uint8_t detected = Phase4_StopLineDetected();
+
+    if (phase4_stop_line_armed == 0U)
+    {
+        if (detected != 0U)
+        {
+            phase4_stop_line_clear_frames = 0U;
+        }
+        else
+        {
+            if (phase4_stop_line_clear_frames < PHASE4_STOP_LINE_CLEAR_FRAMES)
+            {
+                phase4_stop_line_clear_frames++;
+            }
+            if (phase4_stop_line_clear_frames >= PHASE4_STOP_LINE_CLEAR_FRAMES)
+            {
+                phase4_stop_line_armed = 1U;
+            }
+        }
+        return 0U;
+    }
+
+    if (detected == 0U)
+    {
+        phase4_stop_line_hit_frames = 0U;
+        return 0U;
+    }
+
+    if (phase4_stop_line_hit_frames < PHASE4_STOP_LINE_CONFIRM_FRAMES)
+    {
+        phase4_stop_line_hit_frames++;
+    }
+    return (phase4_stop_line_hit_frames >= PHASE4_STOP_LINE_CONFIRM_FRAMES) ? 1U : 0U;
+}
+
+static void Phase4_UpdateElapsed(uint32_t now)
+{
+    if (phase4_state == PHASE4_RUN)
+    {
+        phase4_elapsed_ms = now - phase4_run_start_ms;
+    }
+}
+
+static const char *Phase4_StateText(void)
+{
+#if HLINE_SPEED_RUN_MODE == HLINE_SPEED_MODE_LEFT_ONLY
+    const char *wait_text = "H4L WAIT";
+    const char *run_text = "H4L RUN";
+    const char *lost_text = "H4L LOST";
+#elif HLINE_SPEED_RUN_MODE == HLINE_SPEED_MODE_RIGHT_ONLY
+    const char *wait_text = "H4R WAIT";
+    const char *run_text = "H4R RUN";
+    const char *lost_text = "H4R LOST";
+#elif HLINE_SPEED_RUN_MODE == HLINE_SPEED_MODE_DUAL_FIXED
+    const char *wait_text = "H4D WAIT";
+    const char *run_text = "H4D RUN";
+    const char *lost_text = "H4D LOST";
+#else
+    const char *wait_text = "Q2 WAIT";
+    const char *run_text = "Q2 RUN";
+    const char *lost_text = "Q2 LOST";
+#endif
+
+    if (phase4_state == PHASE4_RUN)
+    {
+        return run_text;
+    }
+    if (phase4_state == PHASE4_LOST)
+    {
+        return lost_text;
+    }
+    if (phase4_state == PHASE4_FINISH)
+    {
+        return "Q2 DONE";
+    }
+    return wait_text;
+}
+
+static void Phase4_Stop(Phase4_State_t next_state)
+{
+    Phase4_UpdateElapsed(HAL_GetTick());
+    Servo_StopSweep();
+    if (next_state == PHASE4_FINISH)
+    {
+        Motor_Brake();
+        HAL_Delay(PHASE4_FINISH_BRAKE_MS);
+    }
+    Motor_Stop();
+    LineFollow_Reset(&line_controller);
+    SpeedControl_Reset(&speed_controller);
+    phase4_left_request_pwm = 0;
+    phase4_right_request_pwm = 0;
+    phase4_left_output_pwm = 0;
+    phase4_right_output_pwm = 0;
+    phase4_line_correction = 0;
+    phase4_state = next_state;
+    HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_SET);
+}
+
+static void Phase4_RequestStep(void)
+{
+    if (phase4_state != PHASE4_RUN)
+    {
+        return;
+    }
+
+#if HLINE_SPEED_RUN_MODE == HLINE_SPEED_MODE_LEFT_ONLY
+    phase4_left_request_pwm = HLINE_SPEED_TEST_PWM_PERMILLE;
+    phase4_right_request_pwm = 0;
+    phase4_line_correction = 0;
+#elif HLINE_SPEED_RUN_MODE == HLINE_SPEED_MODE_RIGHT_ONLY
+    phase4_left_request_pwm = 0;
+    phase4_right_request_pwm = HLINE_SPEED_TEST_PWM_PERMILLE;
+    phase4_line_correction = 0;
+#elif HLINE_SPEED_RUN_MODE == HLINE_SPEED_MODE_DUAL_FIXED
+    phase4_left_request_pwm = HLINE_SPEED_TEST_PWM_PERMILLE;
+    phase4_right_request_pwm = HLINE_SPEED_TEST_PWM_PERMILLE;
+    phase4_line_correction = 0;
+#else
+    if (LineFollow_Step(&line_controller, &gray_sample,
+                        &phase4_left_request_pwm, &phase4_right_request_pwm,
+                        &phase4_line_correction) == 0U)
+    {
+        Phase4_Stop(PHASE4_LOST);
+        return;
+    }
+#endif
+}
+
+static void Phase4_Start(void)
+{
+    LineFollow_Reset(&line_controller);
+    SpeedControl_Reset(&speed_controller);
+    phase4_left_request_pwm = 0;
+    phase4_right_request_pwm = 0;
+    phase4_left_output_pwm = 0;
+    phase4_right_output_pwm = 0;
+    phase4_line_correction = 0;
+
+#if HLINE_SPEED_RUN_MODE == HLINE_SPEED_MODE_LINE_TRACK
+    if (gray_sample.line_valid == 0U)
+    {
+        Phase4_Stop(PHASE4_LOST);
+        return;
+    }
+#endif
+
+    Encoder_Reset();
+    Phase4_StopLineReset();
+    phase4_run_start_ms = HAL_GetTick();
+    phase4_elapsed_ms = 0U;
+    phase4_state = PHASE4_RUN;
+    Servo_StartSweep(phase4_run_start_ms);
+    Phase4_RequestStep();
+    HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_RESET);
+}
+
+static void Phase4_SpeedStep(void)
+{
+    if (phase4_state != PHASE4_RUN)
+    {
+        return;
+    }
+
+    SpeedControl_Step(&speed_controller,
+                      phase4_left_request_pwm, phase4_right_request_pwm,
+                      encoder_sample->left_counts_per_second,
+                      encoder_sample->right_counts_per_second);
+    phase4_left_output_pwm = speed_controller.left_output_pwm;
+    phase4_right_output_pwm = speed_controller.right_output_pwm;
+    Motor_SetSignedPermille(phase4_left_output_pwm, phase4_right_output_pwm);
+}
+
+static void Phase4_VofaSend(void)
+{
+    Phase4_VofaFrame_t frame;
+
+    frame.channel[0] = (float)phase4_state;
+    frame.channel[1] = (float)gray_sample.gray8_mask;
+    frame.channel[2] = (float)gray_sample.gray8_unstable_mask;
+    frame.channel[3] = (float)gray_sample.line_valid;
+    frame.channel[4] = (float)gray_sample.error10;
+    frame.channel[5] = (float)speed_controller.left_target_cps;
+    frame.channel[6] = (float)speed_controller.right_target_cps;
+    frame.channel[7] = (float)phase4_line_correction;
+    frame.channel[8] = (float)gray_sample.gray5_mask;
+    frame.channel[9] = (float)encoder_sample->interval_ms;
+    frame.channel[10] = (float)encoder_sample->left_counts_per_second;
+    frame.channel[11] = (float)(-encoder_sample->right_counts_per_second);
+    frame.channel[12] = (float)speed_controller.left.filtered_cps;
+    frame.channel[13] = (float)speed_controller.right.filtered_cps;
+    frame.channel[14] = (float)phase4_left_output_pwm;
+    frame.channel[15] = (float)phase4_right_output_pwm;
+    frame.channel[16] = (float)Phase4_ReadStartKey();
+    frame.channel[17] = (float)phase4_start_key_irq_count;
+    frame.channel[18] = (float)phase4_elapsed_ms / 1000.0f;
+    frame.tail[0] = 0x00U;
+    frame.tail[1] = 0x00U;
+    frame.tail[2] = 0x80U;
+    frame.tail[3] = 0x7FU;
+
+    UART1_SendData((uint8_t *)&frame, (uint16_t)sizeof(frame));
+}
+
+static void Phase4_OledRefresh(void)
+{
+    const char *base_text = Phase4_StateText();
+    char state_text[12];
+    uint8_t index = 0U;
+
+    while ((base_text[index] != '\0') && (index < 8U))
+    {
+        state_text[index] = base_text[index];
+        index++;
+    }
+    state_text[index++] = ' ';
+    state_text[index++] = 'K';
+    state_text[index++] = (Phase4_ReadStartKey() != 0U) ? '1' : '0';
+    state_text[index] = '\0';
+
+    OLED_ShowPhase2(state_text, gray_sample.gray8_mask, gray_sample.gray8_unstable_mask,
+                    gray_sample.error10, gray_sample.line_valid, gray_sample.gray5_mask,
+                    phase4_left_output_pwm, phase4_right_output_pwm, phase4_line_correction);
+    OLED_ShowTimeMs(phase4_elapsed_ms);
+}
 
 
 /* USER CODE END 0 */
@@ -121,15 +461,39 @@ int main(void)
     /* Initialize all configured peripherals */
     MX_GPIO_Init();
     MX_TIM1_Init();
+    MX_TIM2_Init();
+    MX_TIM3_Init();
+    MX_TIM4_Init();
+    MX_TIM5_Init();
     /* USER CODE BEGIN 2 */
-    /* ÓÃ»§´úÂë£¬±ØĞëĞ´ÔÚÅä¶ÔµÄBEGINÓëENDÖ®¼ä */
+    /* ç”¨æˆ·ä»£ç ï¼Œå¿…é¡»å†™åœ¨é…å¯¹çš„BEGINä¸ENDä¹‹é—´ */
 
-    HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_SET);       // Òı½ÅÖÃ¸ßµçÆ½£¬ºìÁÁÃğ
+    HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_SET);       // å¼•è„šç½®é«˜ç”µå¹³ï¼Œçº¢äº®ç­
 
-    UART1_Init(115200);                                                    // ³õÊ¼»¯ ´®¿Ú1; ÒÑĞ´ºÃµ×²ã£¬µ÷ÓÃhÖĞµÄº¯Êı¼´¿ÉÊ¹ÓÃ; Òı½Å(PA9 +PA10)¡¢²¨ÌØÂÊ-None-8-1; Èç¹ûÊ¹ÓÃCubeMXÅäÖÃ£¬ÇëÊ¹ÓÃÇ°ÊöÒı½Å£¬µ«£¬²»ÒªÔÚMXÉÏ½øĞĞÖĞ¶Ï¼°DMAÅäÖÃ£¬·ñÔò³åÍ»
+    UART1_Init(PHASE4_VOFA_BAUDRATE);                                       // JDY-31é»˜è®¤9600bpsï¼Œå‘é€VOFA JustFloatäºŒè¿›åˆ¶å¸§
 
-    HAL_TIM_Base_Start_IT(&htim1);                                         // Æô¶¯TIM1£¬²¢Ê¹ÄÜÖĞ¶Ï
+    HAL_TIM_Base_Start_IT(&htim1);                                         // å¯åŠ¨TIM1ï¼Œå¹¶ä½¿èƒ½ä¸­æ–­
 
+
+    Gray_Init();
+    OLED_Init();
+    if (Encoder_Init() != HAL_OK)
+    {
+        Error_Handler();
+    }
+    encoder_sample = Encoder_GetSample();
+    if (Motor_Init() != HAL_OK)
+    {
+        Error_Handler();
+    }
+    if (Servo_Init() != HAL_OK)
+    {
+        Error_Handler();
+    }
+    Gray_Read(&gray_sample);
+    Phase4_Stop(PHASE4_WAIT);
+    Phase4_StartKeyInit(HAL_GetTick());
+    Phase4_OledRefresh();
 
     /* USER CODE END 2 */
 
@@ -140,8 +504,71 @@ int main(void)
         /* USER CODE END WHILE */
 
         /* USER CODE BEGIN 3 */
-        /* ÓÃ»§´úÂë£¬±ØĞëĞ´ÔÚÅä¶ÔµÄBEGINÓëENDÖ®¼ä */
+        /* ç”¨æˆ·ä»£ç ï¼Œå¿…é¡»å†™åœ¨é…å¯¹çš„BEGINä¸ENDä¹‹é—´ */
+        static uint32_t last_control;
+        static uint32_t last_encoder;
+        static uint32_t last_vofa;
+        static uint32_t last_oled;
+        uint32_t now = HAL_GetTick();
 
+        Phase4_UpdateElapsed(now);
+        if (phase4_state == PHASE4_RUN)
+        {
+            Servo_SweepStep(now);
+        }
+
+        if ((now - last_control) >= HLINE_CONTROL_PERIOD_MS)
+        {
+            last_control = now;
+            Gray_Read(&gray_sample);
+            if ((phase4_state == PHASE4_RUN) && (Phase4_StopLineStep() != 0U))
+            {
+                Phase4_Stop(PHASE4_FINISH);
+                Phase4_OledRefresh();
+            }
+            else
+            {
+                Phase4_RequestStep();
+            }
+        }
+
+        if (Phase4_StartKeyPressed(now) != 0U)
+        {
+            if (phase4_state == PHASE4_RUN)
+            {
+                Phase4_Stop(PHASE4_WAIT);
+            }
+            else
+            {
+                Phase4_Start();
+            }
+            Phase4_OledRefresh();
+        }
+
+        if ((now - last_encoder) >= HLINE_SPEED_CONTROL_PERIOD_MS)
+        {
+            uint32_t elapsed_encoder = now - last_encoder;
+            last_encoder = now;
+            Encoder_Update(elapsed_encoder);
+            Phase4_SpeedStep();
+        }
+
+        if ((now - last_vofa) >= PHASE4_VOFA_PERIOD_MS)
+        {
+            last_vofa = now;
+            Phase4_VofaSend();
+        }
+
+        if ((phase4_state == PHASE4_RUN) && ((now - last_oled) >= PHASE4_OLED_TIME_PERIOD_MS))
+        {
+            last_oled = now;
+            OLED_ShowTimeMs(phase4_elapsed_ms);
+        }
+        else if ((phase4_state != PHASE4_RUN) && ((now - last_oled) >= PHASE4_OLED_PERIOD_MS))
+        {
+            last_oled = now;
+            Phase4_OledRefresh();
+        }
     }
 
     /* USER CODE END 3 */
@@ -193,27 +620,35 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-/* ËùÓĞÓÃ»§´úÂë£¬±ØĞëĞ´ÔÚÅä¶ÔµÄBEGINÓëENDÖ®¼ä */
+/* æ‰€æœ‰ç”¨æˆ·ä»£ç ï¼Œå¿…é¡»å†™åœ¨é…å¯¹çš„BEGINä¸ENDä¹‹é—´ */
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+    if (GPIO_Pin == START_KEY_Pin)
+    {
+        phase4_start_key_irq_count++;
+    }
+}
 
 /******************************************************************************
- * º¯  Êı£º HAL_TIM_PeriodElapsedCallback
- * ¹¦  ÄÜ£º ÖÜÆÚ¸üĞÂ»Øµ÷º¯Êı
- * ±¸  ×¢£º ±¾º¯ÊıÊÇTIMµÄCNTÒç³öÖĞ¶Ï»Øµ÷º¯Êı¡£
- *          µ±TIMµÄ¼ÆÊıÆ÷CNT£¬Íê³É1ÖÜÆÚ¼ÆÊıÊ±´¥·¢(ÏòÉÏ¼ÆÊı£ºCNT==ARR£¬ÏòÏÂ¼ÆÊı£ºCNT==0);
- *          ÉÏÊöÖĞ¶Ï´¥·¢ºó£¬Ó²¼ş×Ô¶¯µ÷ÓÃÏà¹ØÖĞ¶Ï·şÎñº¯Êı£¬¼Ì¶øµ÷ÓÃ±¾º¯Êı¡£
- *          ËùÓĞTIMµÄÖÜÆÚ¸üĞÂÖĞ¶Ï£¬¶¼ÊÇµ÷ÓÃ±¾º¯Êı£¬Òò´ËĞèÒªÔÚº¯ÊıÄÚÅĞ¶ÏÊÇÄÄÒ»¸öTIM´¥·¢µÄÖĞ¶Ï;
- * ²Î  Êı£º TIM_HandleTypeDef   *htim
- * ·µ»ØÖµ£º ÎŞ
+ * å‡½  æ•°ï¼š HAL_TIM_PeriodElapsedCallback
+ * åŠŸ  èƒ½ï¼š å‘¨æœŸæ›´æ–°å›è°ƒå‡½æ•°
+ * å¤‡  æ³¨ï¼š æœ¬å‡½æ•°æ˜¯TIMçš„CNTæº¢å‡ºä¸­æ–­å›è°ƒå‡½æ•°ã€‚
+ *          å½“TIMçš„è®¡æ•°å™¨CNTï¼Œå®Œæˆ1å‘¨æœŸè®¡æ•°æ—¶è§¦å‘(å‘ä¸Šè®¡æ•°ï¼šCNT==ARRï¼Œå‘ä¸‹è®¡æ•°ï¼šCNT==0);
+ *          ä¸Šè¿°ä¸­æ–­è§¦å‘åï¼Œç¡¬ä»¶è‡ªåŠ¨è°ƒç”¨ç›¸å…³ä¸­æ–­æœåŠ¡å‡½æ•°ï¼Œç»§è€Œè°ƒç”¨æœ¬å‡½æ•°ã€‚
+ *          æ‰€æœ‰TIMçš„å‘¨æœŸæ›´æ–°ä¸­æ–­ï¼Œéƒ½æ˜¯è°ƒç”¨æœ¬å‡½æ•°ï¼Œå› æ­¤éœ€è¦åœ¨å‡½æ•°å†…åˆ¤æ–­æ˜¯å“ªä¸€ä¸ªTIMè§¦å‘çš„ä¸­æ–­;
+ * å‚  æ•°ï¼š TIM_HandleTypeDef   *htim
+ * è¿”å›å€¼ï¼š æ— 
 ******************************************************************************/
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-    if (htim->Instance == TIM1)                             // ÅĞ¶ÏÊÇÄÄ¸öTIM²úÉúµÄÖĞ¶Ï
+    if (htim->Instance == TIM1)                             // åˆ¤æ–­æ˜¯å“ªä¸ªTIMäº§ç”Ÿçš„ä¸­æ–­
     {
-        static uint16_t cnt = 0;                            // ÖĞ¶Ï´ÎÊı
-        if (cnt++ >= 1000)                                  // Ã¿ÖĞ¶Ï1000´ÎÖ´ĞĞ£¬¼´1sÖ´ĞĞ1´Î
+        static uint16_t cnt = 0;                            // ä¸­æ–­æ¬¡æ•°
+        if (cnt++ >= 1000)                                  // æ¯ä¸­æ–­1000æ¬¡æ‰§è¡Œï¼Œå³1sæ‰§è¡Œ1æ¬¡
         {
-            HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_2);          // ·´×ªLEDÒı½Å
-            cnt = 0;                                        // ¼ÆÊıÇå0
+            HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_2);          // åè½¬LEDå¼•è„š
+            cnt = 0;                                        // è®¡æ•°æ¸…0
         }
     }
 
